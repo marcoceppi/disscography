@@ -1,0 +1,14 @@
+<% layout('../layout') -%>
+
+<h1>ALL YOUR TRAX BRO</h1>
+<a href="/traq/new">New Traq</a>
+<ul>
+  <% for(i in trax) {%>
+    <li style="padding-bottom: 50px">
+      <div>
+        <em><%= trax[i]['title'] %></em> - <%= trax[i]['runtime'] %><br />
+        <a href="/traq/show/<%= trax[i]['id'] %>">Learn more about <%= trax[i]['title'] %> bro</a>
+       </div>
+    </li>
+  <% } %>
+</ul>

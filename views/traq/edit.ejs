@@ -1,0 +1,25 @@
+<% layout('../layout') -%>
+
+<h1>
+  You are editing <%= traq['title'] %> bro
+</h1>
+
+<form method="post" action="/traq/update">
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" value="<%= traq['title'] %>">
+    </div>
+    <div>
+      <label for="artist">Runtime:</label>
+      <input type="text" id="runtime" name="runtime" value="<%= traq['runtime'] %>">
+    </div>
+    <div>
+      <label for="label">Audio File:</label>
+      <input type="url" id="audio" name="audio" value="<%= traq['audio'] %>">
+    </div>
+    <div>
+      <input type="hidden" id="id" name="id" value="<%= traq['id'] %>">
+      <input type="submit" value="SUBMIT BRO">
+      <input type="button" href="/traq/destroy/<%= traq['id'] %>" value="DELETE THIS MOTHER">
+    </div>
+</form>

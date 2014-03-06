@@ -1,0 +1,10 @@
+<% layout('../layout') -%>
+
+<h1><%= traq['title'] %></h1>
+
+<div>Runtime: <%= traq['runtime'] %></div>
+<div>Audio File: <a href="<%= traq['audio'] %>">Open</a></div>
+
+<a href="/traq/edit/<%= traq['id'] %>">Edit this traq</a>
+<a href="/traq/delete/<%= traq['id'] %>">Delete this traq</a>
+<a href="/traq">View all trax</a>

@@ -1,5 +1,5 @@
 /**
- * AlbumController
+ * TraqController
  *
  * @module      :: Controller
  * @description  :: A set of functions called `actions`.
@@ -19,17 +19,6 @@ var util = require('util');
 
 module.exports = {
   new: function(req, res) {
-    res.view();
-  },
-
-  create: function(req, res, next) {
-    Album.create(req.body, function(err, record) {
-      if(err) return next(util.inspect(err));
-      res.redirect('/album/show/' + record['id']);
-    });
-  },
-
-  index: function(req, res, next) {
     Album.find(function(err, albums) {
       if(err) return next(err);
       res.view({
@@ -38,36 +27,51 @@ module.exports = {
     });
   },
 
-  show: function(req, res, next) {
-    Album.findOne(req.param('id'), function(err, record) {
-      if(err) return next(err);
+  create: function(req, res, next) {
+    Traq.create(req.body, function(err, record) {
+      if(err) return next(util.inspect(err, {depth: null}));
+      res.redirect('/traq/show/' + record['id']);
+    });
+  },
+
+  index: function(req, res, next) {
+    Traq.find(function(err, trax) {
+      if(err) return next(util.inspect(err, {depth: null}));
       res.view({
-        album: record
+        trax: trax
+      });
+    });
+  },
+
+  show: function(req, res, next) {
+    Traq.findOne(req.param('id'), function(err, record) {
+      if(err) return next(util.inspect(err, {depth: null}));
+      res.view({
+        traq: record
       });
     });
   },
 
   edit: function(req, res, next) {
-    Album.findOne(req.param('id'), function(err, record) {
-      if(err) return next(err);
+    Traq.findOne(req.param('id'), function(err, record) {
+      if(err) return next(util.inspect(err, {depth: null}));
       res.view({
-        album: record
+        traq: record
       });
     });
   },
 
   delete: function(req, res, next) {
-    Album.destroy(req.param('id'), function(err) {
-      if(err) return next(err);
-      res.redirect('/album');
+    Traq.destroy(req.param('id'), function(err) {
+      if(err) return next(util.inspect(err, {depth: null}));
+      res.redirect('/traq');
     });
   },
 
   update: function(req, res, next) {
-    console.log(util.inspect(req.body));
-    Album.update(req.param('id'), req.body, function(err) {
-      if(err) return next(err);
-      res.redirect('/album/show/' + req.param('id'));
+    Traq.update(req.param('id'), req.body, function(err) {
+      if(err) return next(util.inspect(err, {depth: null}));
+      res.redirect('/traq/show/' + req.param('id'));
     });
   },
 
